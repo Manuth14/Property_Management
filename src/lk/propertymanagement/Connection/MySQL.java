@@ -8,8 +8,8 @@ public class MySQL {
 
     private static Connection connection;
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "M@14Manuth.";
-    private static final String DATABASE = "myShop";
+    private static final String PASSWORD = "...............";
+    private static final String DATABASE = "..........";
 
     public static void createConnection() throws Exception {
         if (connection == null) {
