@@ -27,18 +27,126 @@ public class TenantRegistration extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        tenantMobileField = new javax.swing.JTextField();
+        tenantNICField = new javax.swing.JTextField();
+        tenantAddressField = new javax.swing.JTextField();
+        tenantEmailField = new javax.swing.JTextField();
+        tenantFNameField = new javax.swing.JTextField();
+        tenantLNameField = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        tenantStatusComboBox = new javax.swing.JComboBox<>();
+        jFemale = new javax.swing.JRadioButton();
+        jMale = new javax.swing.JRadioButton();
+        updateTenantButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
+        addTenantButton = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Poppins Medium", 1, 24)); // NOI18N
+        jLabel1.setText("Tenant Registration");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+
+        jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel2.setText("First Name");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, 360, 10));
+
+        jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel3.setText("Email");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 30));
+
+        jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel4.setText("Mobile");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 30));
+
+        jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel5.setText("NIC");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, 30));
+
+        jLabel6.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel6.setText("Gender");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel7.setText("Status");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 30));
+
+        jLabel8.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel8.setText("Address");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 30));
+
+        jLabel9.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel9.setText("Last Name");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
+
+        jLabel11.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel11.setText("Tenant Id");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 30));
+
+        tenantMobileField.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        getContentPane().add(tenantMobileField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 250, 30));
+
+        tenantNICField.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        getContentPane().add(tenantNICField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 250, 30));
+
+        tenantAddressField.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        getContentPane().add(tenantAddressField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 250, 30));
+
+        tenantEmailField.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        getContentPane().add(tenantEmailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 250, 30));
+
+        tenantFNameField.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        getContentPane().add(tenantFNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 250, 30));
+
+        tenantLNameField.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        getContentPane().add(tenantLNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 250, 30));
+
+        jTextField9.setEditable(false);
+        jTextField9.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jTextField9.setEnabled(false);
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 250, 30));
+
+        tenantStatusComboBox.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        tenantStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(tenantStatusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 250, 30));
+
+        buttonGroup1.add(jFemale);
+        jFemale.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jFemale.setText("Female");
+        getContentPane().add(jFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, 30));
+        jFemale.setActionCommand("2");
+
+        buttonGroup1.add(jMale);
+        jMale.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jMale.setText("Male");
+        getContentPane().add(jMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, 30));
+        jMale.setActionCommand("1");
+
+        updateTenantButton.setFont(new java.awt.Font("Poppins Medium", 1, 14)); // NOI18N
+        updateTenantButton.setText("Update Tenant");
+        getContentPane().add(updateTenantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 340, 30));
+
+        clearButton.setFont(new java.awt.Font("Poppins Medium", 1, 14)); // NOI18N
+        clearButton.setText("Clear All");
+        getContentPane().add(clearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 340, 30));
+
+        addTenantButton.setFont(new java.awt.Font("Poppins Medium", 1, 14)); // NOI18N
+        addTenantButton.setText("Add Tenant");
+        getContentPane().add(addTenantButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 340, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,5 +194,30 @@ public class TenantRegistration extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addTenantButton;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JRadioButton jFemale;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jMale;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField tenantAddressField;
+    private javax.swing.JTextField tenantEmailField;
+    private javax.swing.JTextField tenantFNameField;
+    private javax.swing.JTextField tenantLNameField;
+    private javax.swing.JTextField tenantMobileField;
+    private javax.swing.JTextField tenantNICField;
+    private javax.swing.JComboBox<String> tenantStatusComboBox;
+    private javax.swing.JButton updateTenantButton;
     // End of variables declaration//GEN-END:variables
 }
