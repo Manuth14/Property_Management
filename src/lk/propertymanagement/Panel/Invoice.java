@@ -31,7 +31,7 @@ public class Invoice extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Poppins Medium", 1, 24)); // NOI18N
-        jLabel1.setText("Property List");
+        jLabel1.setText("Invoice");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
