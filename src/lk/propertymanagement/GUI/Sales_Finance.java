@@ -92,7 +92,7 @@ public class Sales_Finance extends javax.swing.JPanel {
                 Color color1 = getColor();
                 Color color2 = getColor();
                 chart.addLegend(resultSet.getString("type"), color1, color2);
-                lineChart1.addLegend(resultSet.getString("type"), color1, color2);
+                lineChart1.addLegend(resultSet.getString("type"), color1, color1);
             }
         } catch (Exception e) {
             e.printStackTrace();

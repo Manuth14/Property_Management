@@ -49,9 +49,10 @@ public class Test {
 
     public static void main(String[] args) {
         String a = "a";
-        for (int i = 0; i < 10; i++) {
-            a+="a";
-        }
+        
+        String b = a+""+"b";
+        System.out.println(a);
+        System.out.println(b);
 
     }
 }
