@@ -27,13 +27,13 @@ public class Expenses extends javax.swing.JPanel {
      */
     private DashBoard dashBoard;
 
-    public void setDashboard(DashBoard dashBoard){
+    public void setDashboard(DashBoard dashBoard) {
         this.dashBoard = dashBoard;
     }
-    
+
     public Expenses() {
         initComponents();
-        
+
         loadExpensesType();
         loadExpenses();
     }
@@ -58,8 +58,7 @@ public class Expenses extends javax.swing.JPanel {
 
         String query = "SELECT * FROM expenses "
                 + "INNER JOIN expenses_type ON expenses.expenses_type_id=expenses_type.id "
-                + "INNER JOIN user ON expenses.user_id=user.id "
-                + "INNER JOIN employee ON user.employee_id = employee.id ";
+                + "INNER JOIN employee ON expenses.employee_id=employee.id ";
 
         String search = jTextField1.getText();
 

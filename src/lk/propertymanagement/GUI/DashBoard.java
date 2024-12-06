@@ -37,6 +37,10 @@ public class DashBoard extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,7 +48,7 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 363));
 
-        jPanel2.setLayout(new java.awt.GridLayout(5, 1, 15, 15));
+        jPanel2.setLayout(new java.awt.GridLayout(8, 1, 15, 15));
 
         jButton1.setText("Expenses");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,13 +82,45 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel2.add(jButton4);
 
+        jButton5.setText("Salary Details Updates");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5);
+
+        jButton6.setText("Employee Salary");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6);
+
+        jButton8.setText("Over Time Assigning");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton8);
+
+        jButton9.setText("Salary List");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton9);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,6 +170,36 @@ public class DashBoard extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(jPanel3);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Salary_Updates salary_Updates = new Salary_Updates();
+        jPanel3.removeAll();
+        jPanel3.add(salary_Updates, BorderLayout.CENTER);
+        SwingUtilities.updateComponentTreeUI(jPanel3);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Employee_Salary employee_Salary = new Employee_Salary();
+        employee_Salary.setDashboard(this);
+        jPanel3.removeAll();
+        jPanel3.add(employee_Salary, BorderLayout.CENTER);
+        SwingUtilities.updateComponentTreeUI(jPanel3);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        Employee_OverTime_Assign assign = new Employee_OverTime_Assign();
+        assign.setDashboard(this);
+        jPanel3.removeAll();
+        jPanel3.add(assign, BorderLayout.CENTER);
+        SwingUtilities.updateComponentTreeUI(jPanel3);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Employee_Salary_List salary_List = new Employee_Salary_List();
+        jPanel3.removeAll();
+        jPanel3.add(salary_List, BorderLayout.CENTER);
+        SwingUtilities.updateComponentTreeUI(jPanel3);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,6 +220,10 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

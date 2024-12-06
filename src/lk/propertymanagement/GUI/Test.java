@@ -5,10 +5,9 @@
 package lk.propertymanagement.GUI;
 
 import java.util.Vector;
-import java.sql.ResultSet;
 import java.text.DateFormatSymbols;
 import java.util.Arrays;
-import lk.propertymanagement.Connection.MySQL;
+import java.util.Random;
 
 /**
  *
@@ -47,12 +46,44 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) {
-        String a = "a";
-        
-        String b = a+""+"b";
-        System.out.println(a);
-        System.out.println(b);
+    public static double calculateTax(double income) {
+        double tax = 0.0;
+        double releif = 0;
+        double first = 0;
+        double next1 = 0;
+        double next2 = 0;
+        double next3 = 0;
+        double next4 = 0;
+        double balance = 0;
+        // Define the income slabs and respective tax rates
+        double[] slabs = {100000, 41666.67, 41666.67, 41666.67, 41666.67, 41666.67};
+        double[] rates = {0.0, 0.06, 0.12, 0.18, 0.24, 0.30};
 
+        // Calculate tax based on slabs
+        for (int i = 0; i < slabs.length; i++) {
+            if (income <= 0) {
+                break;
+            }
+            double taxableIncome = Math.min(income, slabs[i]);
+
+            tax += taxableIncome * rates[i];
+            System.out.println("" + tax + " " + taxableIncome);
+            income -= taxableIncome;
+
+        }
+
+        // Apply the 36% rate for the remaining income (if any)
+        if (income > 0) {
+            tax += income * 0.36;
+
+        }
+
+        return tax;
     }
-}
+
+    public static void main(String[] args) {
+        
+        }
+    }
+
+

@@ -115,17 +115,22 @@ public class Income_Finance extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    double expenses = 0;
 
     private void loadExpenses() {
+        double expenses = 0;
         int year = getCurrentYear();
         int month = getCurrentMonth();
+        String dateQuery = "WHERE YEAR(date) ='" + year + "' AND MONTH(DATE) = " + month + "";
         String expensesQuery = "SELECT expenses_type,SUM(amount) AS amount FROM expenses "
                 + "INNER JOIN expenses_type ON expenses.expenses_type_id=expenses_type.id "
-                + "WHERE YEAR(date) ='" + year + "' AND MONTH(DATE) = " + month + " GROUP BY expenses_type.expenses_type";
+                + " " + dateQuery + " GROUP BY expenses_type.expenses_type";
+        String salaryQuery = "SELECT SUM(`epf`) AS totalEmployerPaidEPF,SUM(`etf`) AS totalEmployerPaidETF,"
+                + "SUM(`earning`) AS salaryEarningSum FROM salary " + dateQuery + "";
+
         try {
             pieChart2.clearData();
             ResultSet resultSet = MySQL.executeSearch(expensesQuery);
+            ResultSet salaryResultSet = MySQL.executeSearch(salaryQuery);
 
             while (resultSet.next()) {
                 Color color = getColor();
@@ -135,8 +140,19 @@ public class Income_Finance extends javax.swing.JPanel {
                 pieChart2.addData(new ModelPieChart(lable, amount, color));
                 expenses += amount;
             }
-            jLabel9.setText("Rs." + this.expenses);
-            double profit = this.income - this.expenses;
+
+            if (salaryResultSet.next()) {
+                Color color = getColor();
+                double epf = salaryResultSet.getDouble("totalEmployerPaidEPF");
+                double etf = salaryResultSet.getDouble("totalEmployerPaidETF");
+                double salary = salaryResultSet.getDouble("salaryEarningSum");
+                double amount = epf + etf + salary;
+                addLegend("Employee Salary", color, getColor(), panelLegend1);
+                pieChart2.addData(new ModelPieChart("Employee Salary", amount, color));
+                expenses += amount;
+            }
+            jLabel9.setText("Rs." + expenses);
+            double profit = this.income - expenses;
             jLabel11.setText("Rs." + profit);
         } catch (Exception e) {
             e.printStackTrace();
@@ -184,14 +200,26 @@ public class Income_Finance extends javax.swing.JPanel {
     private double expenses(String month) {
         int year = getCurrentYear();
         double expenses = 0;
-        String expensesQuery = "SELECT SUM(amount) AS amount FROM expenses "
-                + "WHERE YEAR(date) ='" + year + "' AND UPPER(DATE_FORMAT(date, '%M')) = '" + month + "'";
+        String dateQuery = "WHERE YEAR(date) ='" + year + "' AND UPPER(DATE_FORMAT(date, '%M')) = '" + month + "'";
+        String expensesQuery = "SELECT SUM(amount) AS amount FROM expenses " + dateQuery + "";
+        String salaryQuery = "SELECT SUM(`epf`) AS totalEmployerPaidEPF,SUM(`etf`) AS totalEmployerPaidETF,"
+                + "SUM(`earning`) AS salaryEarningSum FROM salary " + dateQuery + "";
         try {
 
             ResultSet resultSet = MySQL.executeSearch(expensesQuery);
+            ResultSet salaryResultSet = MySQL.executeSearch(salaryQuery);
 
             while (resultSet.next()) {
                 double amount = resultSet.getDouble("amount");
+                expenses += amount;
+            }
+
+            if (salaryResultSet.next()) {
+
+                double epf = salaryResultSet.getDouble("totalEmployerPaidEPF");
+                double etf = salaryResultSet.getDouble("totalEmployerPaidETF");
+                double salary = salaryResultSet.getDouble("salaryEarningSum");
+                double amount = epf + etf + salary;
                 expenses += amount;
             }
 
@@ -218,10 +246,10 @@ public class Income_Finance extends javax.swing.JPanel {
         for (String monthName : month) {
             double monthlyIncome = income(monthName);
             double monthlyExpense = expenses(monthName);
-            double monthlyProfit = monthlyIncome -monthlyExpense;
-            chart.addData(new ModelChart("February", new double[]{monthlyIncome, monthlyExpense, monthlyProfit}));
+            double monthlyProfit = monthlyIncome - monthlyExpense;
+            chart.addData(new ModelChart(monthName, new double[]{monthlyIncome, monthlyExpense, monthlyProfit}));
         }
-        
+
         chart.start();
     }
 
