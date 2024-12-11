@@ -8,12 +8,12 @@ package lk.propertymanagement.Panel;
  *
  * @author manut
  */
-public class Invoice extends javax.swing.JPanel {
+public class Monthly_Rental extends javax.swing.JPanel {
 
     /**
      * Creates new form Invoice
      */
-    public Invoice() {
+    public Monthly_Rental() {
         initComponents();
     }
 
