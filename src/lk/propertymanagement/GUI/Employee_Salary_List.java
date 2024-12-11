@@ -4,14 +4,26 @@
  */
 package lk.propertymanagement.GUI;
 
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -24,7 +36,7 @@ public class Employee_Salary_List extends javax.swing.JPanel {
      */
     public Employee_Salary_List() {
         initComponents();
-        
+
     }
 
     private void loadEmployeeSalary() {
@@ -120,9 +132,9 @@ public class Employee_Salary_List extends javax.swing.JPanel {
                 double epf = countResult.getDouble("totalEmployerPaidEPF");
                 double etf = countResult.getDouble("totalEmployerPaidETF");
                 double earning = countResult.getDouble("salaryEarningSum");
-                
-                jTextField4.setText(""+(epf+etf+earning));
-                jTextField5.setText(""+(epf+etf));
+
+                jTextField4.setText("" + (epf + etf + earning));
+                jTextField5.setText("" + (epf + etf));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -310,8 +322,18 @@ public class Employee_Salary_List extends javax.swing.JPanel {
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButton2.setText("Print Salary Report");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Print Pay Sheet");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -404,21 +426,110 @@ public class Employee_Salary_List extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       jTextField1.setText("");
-       jDateChooser1.setCalendar(null);
+        jTextField1.setText("");
+        jDateChooser1.setCalendar(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-       loadEmployeeSalary();
+        loadEmployeeSalary();
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
-       loadEmployeeSalary();
+        loadEmployeeSalary();
     }//GEN-LAST:event_jDateChooser1PropertyChange
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-      loadEmployeeSalary();
+        loadEmployeeSalary();
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = jTable1.getSelectedRow();
+        if (row > -1) {
+            String paymentID = String.valueOf(jTable1.getValueAt(row, 0));
+            String base = null;
+            String bonus = null;
+            String overtime_pay = null;
+            String allowences = null;
+            String transport = null;
+            String tax = null;
+            String post = null;
+
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+            String formattedDate = currentDate.format(formatter);
+            try {
+                ResultSet resultSet = MySQL.executeSearch("SELECT base,bonus,overtime_pay,allowences,transport,tax,employee_type "
+                        + "FROM salary INNER JOIN employee ON salary.paid_to = employee.id "
+                        + "INNER JOIN employee_type ON employee.employee_type_id=employee_type.id WHERE salary.id ='" + paymentID + "'");
+                if (resultSet.next()) {
+                    base = resultSet.getString("base");
+                    bonus = resultSet.getString("bonus");
+                    overtime_pay = resultSet.getString("overtime_pay");
+                    allowences = resultSet.getString("allowences");
+                    transport = resultSet.getString("transport");
+                    tax = resultSet.getString("tax");
+                    post = resultSet.getString("employee_type");
+                }
+                InputStream s = this.getClass().getResourceAsStream("/lk/propertymanagement/Reports/SkyLandSalarySheet.jasper");
+
+                HashMap<String, Object> parameters = new HashMap<>();
+                parameters.put("Parameter1", formattedDate);
+                parameters.put("Parameter2", jTable1.getValueAt(row, 2));
+                parameters.put("Parameter5", post);
+
+                parameters.put("Parameter6", base);
+                parameters.put("Parameter7", allowences);
+                parameters.put("Parameter8", bonus);
+                parameters.put("Parameter9", transport);
+                parameters.put("Parameter10", overtime_pay);
+                parameters.put("Parameter11", jTable1.getValueAt(row, 7));
+
+                parameters.put("Parameter12", tax);
+                parameters.put("Parameter13", jTable1.getValueAt(row, 4));
+                parameters.put("Parameter14", jTable1.getValueAt(row, 8));
+                parameters.put("Parameter15", jTable1.getValueAt(row, 6));
+                parameters.put("Parameter16", jTable1.getValueAt(row, 5));
+                parameters.put("Parameter17", jTable1.getValueAt(row, 9));
+
+                parameters.put("Parameter18", jTable1.getValueAt(row, 11));
+                parameters.put("Parameter19", jTable1.getValueAt(row, 3));
+
+                JREmptyDataSource emptyDataSource = new JREmptyDataSource();
+
+                JasperPrint jasperPrint = JasperFillManager.fillReport(s, parameters, emptyDataSource);
+
+                JasperViewer.viewReport(jasperPrint, false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Select the Row from Table", "WARNING",
+                    JOptionPane.WARNING_MESSAGE);
+            jTable1.grabFocus();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        InputStream s = this.getClass().getResourceAsStream("/lk/propertymanagement/Reports/SkyLandSalaryList.jasper");
+
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("Parameter1", jTextField2.getText());
+        parameters.put("Parameter2", jTextField3.getText());
+        parameters.put("Parameter3", jTextField4.getText());
+        parameters.put("Parameter4", jTextField5.getText());
+        JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+
+        JasperPrint jasperPrint;
+        try {
+            jasperPrint = JasperFillManager.fillReport(s, parameters, dataSource);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+           ex.printStackTrace();
+                 
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
