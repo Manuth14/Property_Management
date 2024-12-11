@@ -256,7 +256,7 @@ public class TenantRegistration extends javax.swing.JDialog {
                 String genderId = gender.getActionCommand();
                 
                 MySQL.executeIUD("INSERT INTO `tenant` VALUES ('" + Id + "','" + fName + "','" + lName + "','" + nic + "','" + mobile + "',"
-                        + "'" + email + "','" + genderId + "')");
+                        + "'" + email + "','" + genderId + "','"+line1+"','"+line2+"','"+city+"','"+status+"')");
             }
         } catch (Exception e) {
             e.printStackTrace();
