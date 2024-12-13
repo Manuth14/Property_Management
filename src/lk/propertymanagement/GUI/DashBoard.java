@@ -9,7 +9,10 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import lk.propertymanagement.Panel.MaintenanceRequest;
+import lk.propertymanagement.Panel.ManageConstruction;
 import lk.propertymanagement.Panel.Monthly_Rental;
+import lk.propertymanagement.Panel.PropertyOwnerList;
 import lk.propertymanagement.Panel.Sales;
 import lk.propertymanagement.Panel.SalesHistory;
 import lk.propertymanagement.Panel.TenantList;
@@ -35,6 +38,8 @@ public class DashBoard extends javax.swing.JFrame {
     private Salary_Updates salary_Updates;
     private Employee_OverTime_Assign overTime_Assign;
     private Expenses expenses;
+    private MaintenanceRequest maintenanceRequest;
+    private ManageConstruction construction;
     
     public DashBoard() {
         initComponents();
@@ -46,6 +51,19 @@ public class DashBoard extends javax.swing.JFrame {
                 if (index == 0) {
                     loadPanel(h, new Home());
                 }
+                
+                if (index == 2 && subIndex == 2) {
+                    PropertyOwnerList list = new PropertyOwnerList();
+                    list.setVisible(true);
+                }
+                
+                if (index == 3 && subIndex == 1) {
+                    loadPanel(construction, new ManageConstruction());
+                }
+                if (index == 3 && subIndex == 2) {
+                    loadPanel(maintenanceRequest, new MaintenanceRequest());
+                }
+                
                 
                 if (index == 4) {
                     loadPanel(tenantList, new TenantList());

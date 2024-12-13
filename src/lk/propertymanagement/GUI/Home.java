@@ -76,7 +76,7 @@ public class Home extends javax.swing.JPanel {
         int month = getCurrentMonth();
 
         String propertyCount = "SELECT COUNT(rental_properties.`id`) AS PropertyCount FROM rental_properties";
-        String rentalProperty = "SELECT COUNT(rental_properties_id) AS COUNT, SUM(rental_ammount) AS amount FROM rental_sales "
+        String rentalProperty = "SELECT COUNT(rental_properties_id) AS COUNT, SUM(rental_amount) AS amount FROM rental_sales "
                 + "WHERE YEAR(paid_date) ='" + year + "' AND MONTH(paid_date) = " + month + "";
 
         String pending = rentalProperty + " " + "AND payment_status_id='2'";
