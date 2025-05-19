@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -43,16 +44,16 @@ public class Salary_Updates extends javax.swing.JPanel {
         loadTaxDetails();
     }
 
-    private String assignByID = null;
+ 
     private String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
     private void setName() {
-        String name = "Kumara";
-        jTextField4.setText(name);
-        jTextField6.setText(name);
-        jTextField9.setText(name);
-        jTextField13.setText(name);
-        assignByID = "1";
+        
+        jTextField4.setText(Signin.getEmployeeName());
+        jTextField6.setText(Signin.getEmployeeName());
+        jTextField9.setText(Signin.getEmployeeName());
+        jTextField13.setText(Signin.getEmployeeName());
+        
     }
 
     private void setDate() {
@@ -140,7 +141,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable1.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -162,7 +163,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             jComboBox4.setModel(dcbm);
             jComboBox5.setModel(dcbm);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -218,7 +219,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable2.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -237,7 +238,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             DefaultComboBoxModel dcbm = new DefaultComboBoxModel(vector);
             jComboBox2.setModel(dcbm);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -258,7 +259,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable4.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+           LoggerFile.setException(e);
         }
     }
 
@@ -290,7 +291,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable5.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -321,7 +322,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable3.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -352,7 +353,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable6.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -392,7 +393,7 @@ public class Salary_Updates extends javax.swing.JPanel {
             }
             jTable7.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -2043,14 +2044,15 @@ public class Salary_Updates extends javax.swing.JPanel {
             try {
 
                 MySQL.executeIUD("INSERT INTO `epf/etf_details_updates` (`employer_EPF`,`employee_EPF`,`etf`,`date`,`employee_id`) "
-                        + "VALUES ('" + epf_employer + "','" + epf_employee + "','" + etf + "','" + this.date + "','" + this.assignByID + "')");
+                        + "VALUES ('" + epf_employer + "','" + epf_employee + "','" + etf + "','" + this.date + "','" + Signin.getEmployeeID() + "')");
                 JOptionPane.showMessageDialog(this, //parent
                         "EPF/ETF Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
                 resetEPF();
+                LoggerFile.setMessageLogger("ETF/Epf details added successfully by"+ Signin.getEmployeeName());
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFile.setException(e);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -2083,14 +2085,15 @@ public class Salary_Updates extends javax.swing.JPanel {
                 String typeID = employeeTypeMap.get(type);
 
                 MySQL.executeIUD("INSERT INTO `allowences_details_updates` (`allowences`,`transport_allowences`,`date`,`employee_id`,`employee_type_id`) "
-                        + "VALUES ('" + allowences + "','" + transportAllowences + "','" + this.date + "','" + this.assignByID + "','" + typeID + "')");
+                        + "VALUES ('" + allowences + "','" + transportAllowences + "','" + this.date + "','" + Signin.getEmployeeID() + "','" + typeID + "')");
                 JOptionPane.showMessageDialog(this, //parent
                         "Allowences Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
                 resetAllowences();
+                LoggerFile.setMessageLogger("Allowances details successfully added by "+Signin.getEmployeeName());
             } catch (Exception e) {
-                e.printStackTrace();
+                 LoggerFile.setException(e);
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -2118,14 +2121,16 @@ public class Salary_Updates extends javax.swing.JPanel {
             if (option == JOptionPane.YES_OPTION) {
                 try {
                     MySQL.executeIUD("INSERT INTO bonus_type (`bonus_type`,`date`,`employee_id`) "
-                            + "VALUES ('" + type + "','" + this.date + "','" + this.assignByID + "')");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                JOptionPane.showMessageDialog(this, //parent
+                            + "VALUES ('" + type + "','" + this.date + "','" + Signin.getEmployeeID() + "')");
+                    JOptionPane.showMessageDialog(this, //parent
                         "Bonus Type Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
+                    LoggerFile.setMessageLogger("Bonus Type Added Successfully by "+Signin.getEmployeeName());
+                } catch (Exception e) {
+                    LoggerFile.setException(e);
+                }
+                
                 jTextField8.setText("");
                 jTextField21.setText("");
                 loadBonusType();
@@ -2155,14 +2160,15 @@ public class Salary_Updates extends javax.swing.JPanel {
             try {
 
                 MySQL.executeIUD("INSERT INTO `bonus_details_updates` (`value`,`date`,`employee_id`,`employee_type_id`,`bonus_type_id`) "
-                        + "VALUES ('" + bonus + "','" + this.date + "','" + this.assignByID + "','" + employeeTypeID + "','" + bonusTypeID + "')");
+                        + "VALUES ('" + bonus + "','" + this.date + "','" + Signin.getEmployeeID() + "','" + employeeTypeID + "','" + bonusTypeID + "')");
                 JOptionPane.showMessageDialog(this, //parent
                         "Bonus Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
+                LoggerFile.setMessageLogger("Bonus Details Added Successfully by "+Signin.getEmployeeName());
                 resetBonus();
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFile.setException(e);
             }
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -2190,14 +2196,15 @@ public class Salary_Updates extends javax.swing.JPanel {
             String employeeTypeID = employeeTypeMap.get(employeeType);
             try {
                 MySQL.executeIUD("INSERT INTO base_salary_details (`salary`,`date`,`employee_type_id`,`employee_id`) "
-                        + "VALUES ('" + salary + "','" + this.date + "','" + employeeTypeID + "','" + this.assignByID + "')");
+                        + "VALUES ('" + salary + "','" + this.date + "','" + employeeTypeID + "','" + Signin.getEmployeeID()+ "')");
                 JOptionPane.showMessageDialog(this, //parent
                         "Base Salary Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
+                LoggerFile.setMessageLogger("Base Salary Details Added Successfully by "+Signin.getEmployeeName());
                 resetBaseSalary();
             } catch (Exception e) {
-                e.printStackTrace();
+              LoggerFile.setException(e);
             }
         }
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -2217,14 +2224,15 @@ public class Salary_Updates extends javax.swing.JPanel {
             String employeeTypeID = employeeTypeMap.get(employeeType);
             try {
                 MySQL.executeIUD("INSERT INTO overtimepayment_details (`payment`,`date`,`employee_type_id`,`employee_id`) "
-                        + "VALUES ('" + payment + "','" + this.date + "','" + employeeTypeID + "','" + this.assignByID + "')");
+                        + "VALUES ('" + payment + "','" + this.date + "','" + employeeTypeID + "','" + Signin.getEmployeeID() + "')");
                 JOptionPane.showMessageDialog(this, //parent
-                        "Over Time Payment Details Added Successfully", // message
+                        "Overtime Payment Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
+                LoggerFile.setMessageLogger("Overtime Payment Details Added Successfully by "+Signin.getEmployeeName());
                 resetOverTime();
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFile.setException(e);
             }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -2291,14 +2299,15 @@ public class Salary_Updates extends javax.swing.JPanel {
             try {
                 MySQL.executeIUD("INSERT INTO tax (`relief`,`first`,`next1`,`next2`,`next3`,`next4`,`balance`,`date`,`employee_id`) "
                         + "VALUES ('" + relief + "','" + first + "','" + next1 + "','" + next2 + "',"
-                        + "'" + next3 + "','" + next4 + "','" + balance + "','" + this.date + "','" + this.assignByID + "')");
+                        + "'" + next3 + "','" + next4 + "','" + balance + "','" + this.date + "','" + Signin.getEmployeeID() + "')");
                 JOptionPane.showMessageDialog(this, //parent
                         "Tax Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
                 resetTax();
+                LoggerFile.setMessageLogger("Tax Details Added Successfully by "+Signin.getEmployeeName());
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFile.setException(e);
             }
         }
 

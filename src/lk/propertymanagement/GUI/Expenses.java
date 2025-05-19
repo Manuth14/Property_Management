@@ -15,6 +15,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -58,7 +59,7 @@ public class Expenses extends javax.swing.JPanel {
             DefaultComboBoxModel dcm = new DefaultComboBoxModel(vector);
             jComboBox1.setModel(dcm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -152,7 +153,7 @@ public class Expenses extends javax.swing.JPanel {
 
             jTable1.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -438,8 +439,9 @@ public class Expenses extends javax.swing.JPanel {
         try {
             jasperPrint = JasperFillManager.fillReport(s, parameters, dataSource);
             JasperViewer.viewReport(jasperPrint, false); // Because of the false GUI will not close
+            LoggerFile.setMessageLogger("Print Expenses Report");
         } catch (JRException ex) {
-            ex.printStackTrace();
+            LoggerFile.setException(ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

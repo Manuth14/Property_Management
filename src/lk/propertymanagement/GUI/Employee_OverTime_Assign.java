@@ -14,6 +14,7 @@ import java.time.Year;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -159,7 +160,7 @@ public class Employee_OverTime_Assign extends javax.swing.JPanel {
                 jTextField6.setText(String.valueOf(countResult.getInt("hoursCount")));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -605,7 +606,7 @@ public class Employee_OverTime_Assign extends javax.swing.JPanel {
             String overTime = jTextField5.getText();
             Date date = jDateChooser1.getDate();
             String toID = jTextField1.getText();
-            String byID = "1";
+            
 
             String assign_on_str = dateFormat.format(new Date());
             Date assign_on = dateFormat.parse(assign_on_str);
@@ -625,12 +626,13 @@ public class Employee_OverTime_Assign extends javax.swing.JPanel {
                 jButton2.grabFocus();
             } else {
                 MySQL.executeIUD("INSERT INTO overtime (`hours`,`assign_date`,`date`,`to`,`by`) "
-                        + "VALUES ('" + overTime + "','" + dateFormat.format(date) + "','" + assign_on_str + "','" + toID + "','" + byID + "')");
+                        + "VALUES ('" + overTime + "','" + dateFormat.format(date) + "','" + assign_on_str + "','" + toID + "','" + Signin.getEmployeeID() + "')");
 
                 JOptionPane.showMessageDialog(this, //parent
                         "Over Time Details Added Successfully", // message
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
+                LoggerFile.setMessageLogger("Over Time Details Added to Employee ID" + toID);
                 reset();
             }
         } catch (Exception e) {

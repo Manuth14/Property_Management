@@ -19,6 +19,7 @@ import java.util.Vector;
 import javaswingdev.chart.ModelPieChart;
 import javax.swing.JPanel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -110,7 +111,7 @@ public class Income_Finance extends javax.swing.JPanel {
 
             jLabel7.setText("Rs." + income);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -153,7 +154,7 @@ public class Income_Finance extends javax.swing.JPanel {
             double profit = this.income - expenses;
             jLabel11.setText("Rs." + profit);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -190,7 +191,7 @@ public class Income_Finance extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
         return income;
     }

@@ -15,6 +15,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -53,7 +54,7 @@ public class Employee_Salary extends javax.swing.JPanel {
             DefaultComboBoxModel dcbm = new DefaultComboBoxModel(vector);
             jComboBox1.setModel(dcbm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -72,7 +73,7 @@ public class Employee_Salary extends javax.swing.JPanel {
             DefaultComboBoxModel dcbm = new DefaultComboBoxModel(vector);
             jComboBox2.setModel(dcbm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -196,7 +197,7 @@ public class Employee_Salary extends javax.swing.JPanel {
             jTextField15.setText("" + this.deductions);
             jTextField16.setText("" + this.net);
         } catch (Exception e) {
-            e.printStackTrace();
+           LoggerFile.setException(e);
         }
     }
 
@@ -970,10 +971,11 @@ public class Employee_Salary extends javax.swing.JPanel {
                         MySQL.executeIUD("INSERT INTO salary VALUES ('" + paymentID + "','" + this.baseSalary + "','" + this.bonus + "','" + this.overTimePayment + "','" + this.allowences + "',"
                                 + "'" + this.transportAllowences + "','" + this.tax + "','" + this.employer_epfToatal + "','" + this.employee_epfToatal + "',"
                                 + "'" + this.etfToatal + "','" + this.deductions + "','" + this.earning + "','" + this.net + "',"
-                                + "'" + date + "','" + paidTo + "','" + paidBy + "','" + paymentTypeID + "')");
+                                + "'" + date + "','" + paidTo + "','" + Signin.getEmployeeID() + "','" + paymentTypeID + "')");
                         JOptionPane.showMessageDialog(this, "Employee Salary Details Added Successfuly", "Success",
                                 JOptionPane.INFORMATION_MESSAGE);
 
+                        LoggerFile.setMessageLogger("Salary Added to employee ID"+ paidTo);
                     }
 
                 } catch (Exception e) {

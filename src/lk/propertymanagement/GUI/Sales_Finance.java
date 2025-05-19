@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -76,7 +77,7 @@ loadCartData();
             jLabel6.setText("Rs." + revenue);
             jLabel7.setText("" + salesCount);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -105,7 +106,7 @@ loadCartData();
                 lineChart1.addLegend(resultSet.getString("type"), color1, color1);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
         return vector;
     }
@@ -176,7 +177,7 @@ loadCartData();
 
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                     LoggerFile.setException(e);
                 }
             }
 
