@@ -15,7 +15,9 @@ import lk.propertymanagement.DAO.SalesID;
 import lk.propertymanagement.Dialog.Property;
 import lk.propertymanagement.Dialog.Tenant;
 import lk.propertymanagement.GUI.DashBoard;
+import lk.propertymanagement.GUI.Signin;
 import lk.propertymanagement.Logger.LoggerFile;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -44,6 +46,8 @@ public class Sales extends javax.swing.JPanel {
 
     public Sales() {
         initComponents();
+        salesIdField.setText(SalesID.generateSalesID());
+        employeeIdField.setText(Signin.getEmployeeID());
         loadPaymentMethod();
     }
 
@@ -214,7 +218,8 @@ public class Sales extends javax.swing.JPanel {
 
     private void AddSalesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSalesButtonActionPerformed
         try {
-            String empId = tenantIdField.getText();
+            String Id = salesIdField.getText();
+            String empId = employeeIdField.getText();
             String tntId = tenantIdField.getText();
             String propId = propertyIdField.getText();
             String keyMoney = keyMoneyFormattedTextField.getText();
@@ -238,12 +243,12 @@ public class Sales extends javax.swing.JPanel {
             } else if (paymentMethod.equals("Select")) {
                 JOptionPane.showMessageDialog(this, "Please select a payment method", "warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                String Id = SalesID.generateSalesID();
+//                String Id = SalesID.generateSalesID();
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
                 MySQL.executeIUD("INSERT INTO `rental_sales` VALUES "
-                        + "('" + Id + "','" + rental + "','" + rentPeriod + "','" + periodTo + "','" + empId + "','" + tntId + "','" + paymentMap.get(paymentMethod) + "',"
+                        + "('" + Id + "','" + rental + "','" + sdf.format(rentPeriod) + "','" + sdf.format(periodTo) + "','" + empId + "','" + tntId + "','" + paymentMap.get(paymentMethod) + "',"
                         + "'1','" + sdf.format(date) + "','" + propId + "')");
 
                 JOptionPane.showMessageDialog(this, "Sale added Successfully", "success", JOptionPane.INFORMATION_MESSAGE);
@@ -251,17 +256,18 @@ public class Sales extends javax.swing.JPanel {
                 InputStream s = this.getClass().getResourceAsStream("/lk/propertymanagement/Reports/Sales.jasper");
 
                 HashMap<String, Object> params = new HashMap<>();
-                params.put("Parameter1", Id);
+                params.put("Parameter1", salesIdField.getText());
                 params.put("Parameter2", empId);
                 params.put("Parameter3", sdf.format(date));
                 params.put("Parameter4", tntId);
-                params.put("Parameter5", rentPeriod);
-                params.put("Parameter6", periodTo);
+                params.put("Parameter5", sdf.format(rentPeriod));
+                params.put("Parameter6", sdf.format(periodTo));
                 params.put("Parameter7", propId);
                 params.put("Parameter8", keyMoneyFormattedTextField.getText());
                 params.put("Parameter9", rental);
                 params.put("Parameter10", paymentMap.get(paymentMethod));
-                JasperPrint jasperPrint = JasperFillManager.fillReport(s, params);
+                JREmptyDataSource dataSource = new JREmptyDataSource();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(s, params,dataSource);
                 JasperViewer.viewReport(jasperPrint, false);
 
                 reset();

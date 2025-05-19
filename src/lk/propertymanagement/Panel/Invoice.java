@@ -12,10 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import lk.propertymanagement.Connection.MySQL;
 import lk.propertymanagement.DAO.MRP;
+import lk.propertymanagement.DAO.SalesID;
 import lk.propertymanagement.Dialog.Property;
 import lk.propertymanagement.Dialog.Tenant;
 import lk.propertymanagement.GUI.DashBoard;
+import lk.propertymanagement.GUI.Signin;
 import lk.propertymanagement.Logger.LoggerFile;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -32,6 +35,8 @@ public class Invoice extends javax.swing.JPanel {
 
     public Invoice() {
         initComponents();
+        MRPId.setText(SalesID.generateSalesID());
+        jTextField1.setText(Signin.getEmployeeID());
         loadPaymentMethod();
     }
 
@@ -213,6 +218,7 @@ public class Invoice extends javax.swing.JPanel {
 
     private void AddSalesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSalesButtonActionPerformed
         try {
+            String Id = MRPId.getText();
             String empId = jTextField1.getText();
             String tntId = jTextField2.getText();
             String propId = jTextField3.getText();
@@ -231,7 +237,6 @@ public class Invoice extends javax.swing.JPanel {
             } else if (paymentMethod.equals("Select")) {
                 JOptionPane.showMessageDialog(this, "Please select a payment method", "warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                String Id = MRP.generateMrpID();
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -252,7 +257,8 @@ public class Invoice extends javax.swing.JPanel {
                 params.put("Parameter8", payment);
                 params.put("Parameter9", paidAmount);
                 params.put("Parameter10", paymentMap.get(paymentMethod));
-                JasperPrint jasperPrint = JasperFillManager.fillReport(s, params);
+                JREmptyDataSource dataSource = new JREmptyDataSource();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(s, params,dataSource);
                 JasperViewer.viewReport(jasperPrint, false);
                 
                 reset();

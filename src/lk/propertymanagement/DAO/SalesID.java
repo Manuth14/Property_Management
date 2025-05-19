@@ -4,35 +4,42 @@ import java.sql.ResultSet;
 import lk.propertymanagement.Connection.MySQL;
 
 public class SalesID {
-
+    
     public static String generateSalesID() {
-        String lastId = getLastSalesId();
-        if (lastId == null) {
-            return "INVOICE_001";
+        String lastID = getLastSalesID();  // Fetch the last ID from the database
+        if (lastID == null) {
+            return "INV_001";  //  start with CUS_001
         }
 
-        int lastNumericID = Integer.parseInt(lastId.substring(8));
+        // Extract the numeric part from the last ID
+        int lastNumericID = Integer.parseInt(lastID.substring(4));
 
+        // Increment the numeric part
         int newNumericID = lastNumericID + 1;
 
-        String newID = String.format("INVOICE_%03d", newNumericID);
+        // Format the new ID with leading zeros (e.g., CUS_002)
+        String newID = String.format("INV_%03d", newNumericID);
         return newID;
     }
 
-    public static String getLastSalesId() {
-        String lastId = null;
-
+    public static String getLastSalesID() {
+        String lastID = null;
         try {
-            ResultSet rs = MySQL.executeSearch("SELECT `id` FROM `rental_sales` ORDER BY `id` DESC LIMIT 1 ");
+            
+            String query = "SELECT `id` FROM `rental_sales` ORDER BY id DESC LIMIT 1";
+            
+            ResultSet rs = MySQL.executeSearch(query);
 
             if (rs.next()) {
-                lastId = rs.getString("id");
+                lastID = rs.getString("id");
             }
 
+            rs.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return lastId;
+        return lastID;
     }
-
+    
 }

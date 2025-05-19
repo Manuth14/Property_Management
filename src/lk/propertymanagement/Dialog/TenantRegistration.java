@@ -49,7 +49,7 @@ public class TenantRegistration extends javax.swing.JDialog {
 
     private void loadStatus() {
         try {
-            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `sttus`");
+            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `status`");
 
             Vector<String> vector = new Vector<>();
             vector.add("Select");
