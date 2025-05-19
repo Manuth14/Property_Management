@@ -553,7 +553,7 @@ public class Add_Expenses extends javax.swing.JDialog {
                                 "Expenses Type Deleted Successfully", // message
                                 "CONFIRMATION", //title
                                 JOptionPane.INFORMATION_MESSAGE); //type
-                        LoggerFile.setMessageLogger("");
+                        LoggerFile.setMessageLogger("Employee type for ID "+id +" Deleted");
                     }
 
                     resetAddExpenses();
