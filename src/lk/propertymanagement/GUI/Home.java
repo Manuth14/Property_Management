@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -102,7 +103,7 @@ public class Home extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -146,7 +147,7 @@ public class Home extends javax.swing.JPanel {
                 jLabel38.setText(holdResultSet.getString("COUNT") + " Propeties");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
 
     }
@@ -170,7 +171,7 @@ public class Home extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -203,7 +204,7 @@ public class Home extends javax.swing.JPanel {
             jTable1.setModel(dtm);
             changeTable(jTable1, 8);
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 

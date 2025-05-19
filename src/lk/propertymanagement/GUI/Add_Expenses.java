@@ -474,7 +474,7 @@ public class Add_Expenses extends javax.swing.JDialog {
         } else {
             String typeID = expensesTypeMap.get(type);
             try {
-                MySQL.executeIUD("INSERT INTO expenses VALUES ('" + id + "','" + amount + "','" + dateTime + "','" + note + "','" + typeID + "','1')");
+                MySQL.executeIUD("INSERT INTO expenses VALUES ('" + id + "','" + amount + "','" + dateTime + "','" + note + "','" + typeID + "','"+Signin.getEmployeeID()+"')");
                 JOptionPane.showMessageDialog(this, //parent
                         "Expenses Details Added Successfully", // message
                         "CONFIRMATION", //title

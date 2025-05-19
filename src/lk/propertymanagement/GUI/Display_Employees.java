@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Display_Employees extends javax.swing.JDialog {
             DefaultComboBoxModel dcbm = new DefaultComboBoxModel(vector);
             jComboBox1.setModel(dcbm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
 
     }
@@ -90,7 +91,7 @@ public class Display_Employees extends javax.swing.JDialog {
 
             jTable1.setModel(dtm);
         } catch (Exception e) {
-            e.printStackTrace();
+           LoggerFile.setException(e);
         }
     }
 

@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import lk.propertymanagement.GUI.Signin;
 import net.miginfocom.swing.MigLayout;
 
 public class Menu extends JComponent {
@@ -41,8 +42,8 @@ public class Menu extends JComponent {
         {"Database", "BackUp", "Restore"},};
 
     private void validation() {
-        String employeeType = "abc";
-        if (employeeType.equals("Property Agent")) {
+        
+        if (Signin.getEmployeeType().equals("Property Agent")) {
             menuItems = new String[][]{
                 {"Dashboard"},
                 {"Employee"},
@@ -51,7 +52,7 @@ public class Menu extends JComponent {
                 {"Tenant"},
                 {"Sales", "Rental Sales", "Sales History", "Monthly Rent", "Transaction History"},
                 {"Chart", "Sales", "Income"},};
-        } else if (employeeType.equals("Casier")) {
+        } else if (Signin.getEmployeeType().equals("Casier")) {
             menuItems = new String[][]{
                 {"Dashboard"},
                 {"Property", "Property List", "Property Owner"},
@@ -64,7 +65,7 @@ public class Menu extends JComponent {
                 {"Expences"},
                 {"Reports"},
                 {"Database", "BackUp", "Restore"},};
-        }else if (employeeType.equals("Admin")) {
+        }else if (Signin.getEmployeeType().equals("Admin")) {
             menuItems = new String[][]{
                 {"Dashboard"},
                 {"Property", "Property List", "Property Owner"},

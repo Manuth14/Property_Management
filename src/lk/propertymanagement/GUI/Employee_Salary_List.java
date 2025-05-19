@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -137,7 +138,7 @@ public class Employee_Salary_List extends javax.swing.JPanel {
                 jTextField5.setText("" + (epf + etf));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -516,8 +517,10 @@ public class Employee_Salary_List extends javax.swing.JPanel {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(s, parameters, emptyDataSource);
 
                 JasperViewer.viewReport(jasperPrint, false);
+                
+                LoggerFile.setMessageLogger("Print salary sheet for employee "+ jTable1.getValueAt(row, 2));
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFile.setException(e);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please Select the Row from Table", "WARNING",
@@ -540,8 +543,10 @@ public class Employee_Salary_List extends javax.swing.JPanel {
         try {
             jasperPrint = JasperFillManager.fillReport(s, parameters, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
+            
+            LoggerFile.setMessageLogger("Print Salary List Report");
         } catch (JRException ex) {
-           ex.printStackTrace();
+           LoggerFile.setException(ex);
                  
         }
 

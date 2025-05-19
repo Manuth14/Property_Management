@@ -15,6 +15,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -126,7 +127,7 @@ public class Reports extends javax.swing.JPanel {
             jLabel7.setText("Rs." + revenue);
             jLabel8.setText("" + salesCount);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
 
     }
@@ -145,7 +146,7 @@ public class Reports extends javax.swing.JPanel {
             jComboBox1.setModel(dcbm);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -164,7 +165,7 @@ public class Reports extends javax.swing.JPanel {
             jComboBox2.setModel(dcbm);
 
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
     }
 
@@ -182,7 +183,7 @@ public class Reports extends javax.swing.JPanel {
 
             jComboBox3.setModel(dcbm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -217,7 +218,7 @@ public class Reports extends javax.swing.JPanel {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
 
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
@@ -263,7 +264,7 @@ public class Reports extends javax.swing.JPanel {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LoggerFile.setException(e);
                 }
 
                 dtm.addRow(rentalIncomeData);
@@ -297,7 +298,7 @@ public class Reports extends javax.swing.JPanel {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
 
         DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
@@ -344,7 +345,7 @@ public class Reports extends javax.swing.JPanel {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LoggerFile.setException(e);
                 }
 
                 dtm.addRow(monthlyRentalIncomeData);
@@ -457,7 +458,7 @@ public class Reports extends javax.swing.JPanel {
             jLabel31.setText("Rs." + expenses);
             jLabel34.setText("Rs." + profit);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -488,7 +489,7 @@ public class Reports extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+             LoggerFile.setException(e);
         }
         return income;
     }
@@ -518,7 +519,7 @@ public class Reports extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
         return expenses;
 
@@ -1692,8 +1693,9 @@ public class Reports extends javax.swing.JPanel {
         try {
             jasperPrint = JasperFillManager.fillReport(s, parameters, dataSource);
             JasperViewer.viewReport(jasperPrint, false); // Because of the false GUI will not close
+            LoggerFile.setMessageLogger("Successfully print rental sales report");
         } catch (JRException ex) {
-            ex.printStackTrace();
+             LoggerFile.setException(ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1719,8 +1721,9 @@ public class Reports extends javax.swing.JPanel {
         try {
             jasperPrint = JasperFillManager.fillReport(s, parameters, dataSource);
             JasperViewer.viewReport(jasperPrint, false); // Because of the false GUI will not close
+            LoggerFile.setMessageLogger("Successfully print the Monthly Income report");
         } catch (JRException ex) {
-            ex.printStackTrace();
+             LoggerFile.setException(ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1752,8 +1755,9 @@ public class Reports extends javax.swing.JPanel {
         try {
             jasperPrint = JasperFillManager.fillReport(s, parameters, dataSource);
             JasperViewer.viewReport(jasperPrint, false); // Because of the false GUI will not close
+            LoggerFile.setMessageLogger("Successfull print the Income, expenses and profit report");
         } catch (JRException ex) {
-            ex.printStackTrace();
+            LoggerFile.setException(ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
