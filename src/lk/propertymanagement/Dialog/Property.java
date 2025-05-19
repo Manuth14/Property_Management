@@ -7,6 +7,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 import lk.propertymanagement.Panel.Invoice;
 import lk.propertymanagement.Panel.Sales;
 
@@ -57,7 +58,7 @@ public class Property extends javax.swing.JDialog {
             TypeComboBox.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -77,7 +78,7 @@ public class Property extends javax.swing.JDialog {
             conditionComboBox.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -97,7 +98,7 @@ public class Property extends javax.swing.JDialog {
             furnishingComboBox.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -127,7 +128,7 @@ public class Property extends javax.swing.JDialog {
                 model.addRow(vector);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
+import lk.propertymanagement.Logger.LoggerFile;
 import lk.propertymanagement.Panel.Invoice;
 import lk.propertymanagement.Panel.Sales;
 
@@ -63,7 +64,7 @@ public class Tenant extends javax.swing.JDialog {
                 model.addRow(vector);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 

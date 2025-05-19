@@ -15,6 +15,7 @@ import lk.propertymanagement.DAO.SalesID;
 import lk.propertymanagement.Dialog.Property;
 import lk.propertymanagement.Dialog.Tenant;
 import lk.propertymanagement.GUI.DashBoard;
+import lk.propertymanagement.Logger.LoggerFile;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -62,7 +63,7 @@ public class Sales extends javax.swing.JPanel {
             payMethodComboBox.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -267,7 +268,7 @@ public class Sales extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }//GEN-LAST:event_AddSalesButtonActionPerformed
 

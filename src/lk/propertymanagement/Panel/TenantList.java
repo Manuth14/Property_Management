@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
 import lk.propertymanagement.Dialog.TenantRegistration;
 import lk.propertymanagement.GUI.DashBoard;
+import lk.propertymanagement.Logger.LoggerFile;
 
 public class TenantList extends javax.swing.JPanel {
 
@@ -57,7 +58,7 @@ public class TenantList extends javax.swing.JPanel {
                 model.addRow(vector);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 

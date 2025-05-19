@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import lk.propertymanagement.Connection.MySQL;
 import lk.propertymanagement.GUI.DashBoard;
+import lk.propertymanagement.Logger.LoggerFile;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
@@ -80,7 +81,7 @@ public class TransactionHistory extends javax.swing.JPanel {
                 model.addRow(vector);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -226,7 +227,7 @@ public class TransactionHistory extends javax.swing.JPanel {
             JasperPrint jasperPrint = JasperFillManager.fillReport(s, params, dataSource);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

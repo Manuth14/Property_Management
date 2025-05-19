@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import lk.propertymanagement.Connection.MySQL;
 import lk.propertymanagement.DAO.TenantID;
+import lk.propertymanagement.Logger.LoggerFile;
 import lk.propertymanagement.Panel.TenantList;
 import lk.propertymanagement.Validation.Validation;
 
@@ -48,7 +49,7 @@ public class TenantRegistration extends javax.swing.JDialog {
 
     private void loadStatus() {
         try {
-            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `status`");
+            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `sttus`");
 
             Vector<String> vector = new Vector<>();
             vector.add("Select");
@@ -62,7 +63,7 @@ public class TenantRegistration extends javax.swing.JDialog {
             tenantStatusComboBox.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -82,7 +83,7 @@ public class TenantRegistration extends javax.swing.JDialog {
             cityComboBox.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -296,7 +297,7 @@ public class TenantRegistration extends javax.swing.JDialog {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }//GEN-LAST:event_addTenantButtonActionPerformed
 
@@ -385,7 +386,7 @@ public class TenantRegistration extends javax.swing.JDialog {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }//GEN-LAST:event_updateTenantButtonActionPerformed
 
