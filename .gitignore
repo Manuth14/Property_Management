@@ -1,3 +1,9 @@
+# Ignore build output
+*.class
+*.jar
+*.war
+*.ear
+
 # Compiled class file
 *.class
 
