@@ -1,0 +1,228 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package lk.propertymanagement.GUI;
+
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import lk.propertymanagement.Panel.MaintenanceRequest;
+import lk.propertymanagement.Panel.ManageConstruction;
+import lk.propertymanagement.Panel.Monthly_Rental;
+import lk.propertymanagement.Panel.PropertyOwnerList;
+import lk.propertymanagement.Panel.Sales;
+import lk.propertymanagement.Panel.SalesHistory;
+import lk.propertymanagement.Panel.TenantList;
+import lk.propertymanagement.Panel.TransactionHistory;
+import lk.propertymanagement.menu.MenuEvent;
+
+/**
+ *
+ * @author HP
+ */
+public class DashBoard extends javax.swing.JFrame {
+
+    private Home h;
+    private TenantList tenantList;
+    private Sales sales;
+    private SalesHistory salesHistory;
+    private Monthly_Rental monthly_Rental;
+    private TransactionHistory transactionHistory;
+    private Sales_Finance sales_Finance;
+    private Income_Finance income_Finance;
+    private Employee_Salary_List employee_Salary_List;
+    private Employee_Salary employee_Salary;
+    private Salary_Updates salary_Updates;
+    private Employee_OverTime_Assign overTime_Assign;
+    private Expenses expenses;
+    private MaintenanceRequest maintenanceRequest;
+    private ManageConstruction construction;
+    private Reports sales_Report;
+
+    private DashBoard() {
+        initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+        loadPanel(h, new Home());
+        menu1.setEvent(new MenuEvent() {
+            @Override
+            public void selected(int index, int subIndex) {
+                if (index == 0) {
+                    loadPanel(h, new Home());
+                }
+
+                if (index == 1 && subIndex == 1) {
+                    PropertyOwnerList list = new PropertyOwnerList();
+                    list.setVisible(true);
+                }
+
+                if (index == 2 && subIndex == 1) {
+                    loadPanel(construction, new ManageConstruction());
+                }
+                if (index == 2 && subIndex == 2) {
+                    loadPanel(maintenanceRequest, new MaintenanceRequest());
+                }
+
+                if (index == 3) {
+                    loadPanel(tenantList, new TenantList());
+                }
+
+                if (index == 4 && subIndex == 1) {
+                    loadPanel(sales, new Sales());
+                }
+                if (index == 4 && subIndex == 2) {
+                    loadPanel(salesHistory, new SalesHistory());
+                }
+                if (index == 4 && subIndex == 3) {
+                    loadPanel(monthly_Rental, new Monthly_Rental());
+                }
+                if (index == 4 && subIndex == 4) {
+                    loadPanel(transactionHistory, new TransactionHistory());
+                }
+
+                if (index == 6 && subIndex == 1) {
+                    loadPanel(sales_Finance, new Sales_Finance());
+                }
+                if (index == 6 && subIndex == 2) {
+                    loadPanel(income_Finance, new Income_Finance());
+                }
+
+                if (index == 7 && subIndex == 1) {
+                    loadPanel(employee_Salary_List, new Employee_Salary_List());
+                }
+                if (index == 7 && subIndex == 2) {
+                    loadPanel(employee_Salary, new Employee_Salary());
+                   
+                }
+                if (index == 7 && subIndex == 3) {
+                    loadPanel(salary_Updates, new Salary_Updates());
+                }
+                if (index == 7 && subIndex == 4) {
+                    loadPanel(overTime_Assign, new Employee_OverTime_Assign());
+                    
+                }
+
+                if (index == 8) {
+                    loadPanel(expenses, new Expenses());
+                   
+                }
+                if (index == 9) {
+                    loadPanel(sales_Report, new Reports());
+
+                }
+
+            }
+        });
+    }
+
+    private void loadPanel(JPanel variable, JPanel com) {
+        variable = com;
+
+        jPanel3.removeAll();
+        jPanel3.add(variable, BorderLayout.CENTER);
+        SwingUtilities.updateComponentTreeUI(jPanel3);
+    }
+
+    private static DashBoard dashBoard;
+
+    public static synchronized DashBoard getInstance() {
+        if (dashBoard == null) {
+            dashBoard = new DashBoard();
+        }
+        return dashBoard;
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        scrollPaneWin111 = new lk.propertymanagement.scroll.win11.ScrollPaneWin11();
+        menu1 = new lk.propertymanagement.menu.Menu();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(251, 251, 251));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 428));
+
+        jPanel2.setLayout(new java.awt.GridLayout(1, 1, 15, 15));
+
+        scrollPaneWin111.setViewportView(menu1);
+
+        jPanel2.add(scrollPaneWin111);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lk/propertymanagement/Resourses/output-onlinepngtools.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Sky Land");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
+
+        jPanel3.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        FlatMacLightLaf.setup();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               DashBoard.getInstance().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private lk.propertymanagement.menu.Menu menu1;
+    private lk.propertymanagement.scroll.win11.ScrollPaneWin11 scrollPaneWin111;
+    // End of variables declaration//GEN-END:variables
+}
