@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import lk.propertymanagement.Logger.LoggerFile;
 
 /**
  *
@@ -66,7 +67,7 @@ public class Add_Expenses extends javax.swing.JDialog {
             DefaultComboBoxModel dcm = new DefaultComboBoxModel(vector);
             jComboBox1.setModel(dcm);
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerFile.setException(e);
         }
     }
 
@@ -479,8 +480,10 @@ public class Add_Expenses extends javax.swing.JDialog {
                         "CONFIRMATION", //title
                         JOptionPane.INFORMATION_MESSAGE); //type
                 reset();
+                
+                LoggerFile.setMessageLogger("Expenses amount Rs. "+amount +" for ID: "+id+" Added Successfully");
             } catch (Exception e) {
-                e.printStackTrace();
+               LoggerFile.setException(e);
             }
         }
 
@@ -517,10 +520,11 @@ public class Add_Expenses extends javax.swing.JDialog {
                                 "CONFIRMATION", //title
                                 JOptionPane.INFORMATION_MESSAGE); //type
                         resetAddExpenses();
+                        LoggerFile.setMessageLogger(type+ " Expenses Type Added Successfully");
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFile.setException(e);
             }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -549,6 +553,7 @@ public class Add_Expenses extends javax.swing.JDialog {
                                 "Expenses Type Deleted Successfully", // message
                                 "CONFIRMATION", //title
                                 JOptionPane.INFORMATION_MESSAGE); //type
+                        LoggerFile.setMessageLogger("");
                     }
 
                     resetAddExpenses();

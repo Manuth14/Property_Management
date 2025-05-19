@@ -14,7 +14,7 @@ import java.util.logging.SimpleFormatter;
  *
  * @author HP
  */
-public class Logger {
+public class LoggerFile {
 
     public static final java.util.logging.Logger loger = java.util.logging.Logger.getLogger("App");
 

@@ -42,6 +42,7 @@ public class DashBoard extends javax.swing.JFrame {
     private Reports sales_Report;
 
     private DashBoard() {
+        
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         loadPanel(h, new Home());
@@ -207,14 +208,7 @@ public class DashBoard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        FlatMacLightLaf.setup();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               DashBoard.getInstance().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
